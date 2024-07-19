@@ -640,7 +640,7 @@ export function DataTable({
       </Modal>
       <header
         id="controls"
-        className="flex gap-2 flex-wrap flex-shrink-0 w-full "
+        className="flex gap-2 flex-wrap flex-shrink-0 w-full  "
       >
         <Button
           color="primary"
@@ -717,7 +717,9 @@ export function DataTable({
         >
           {isMobile ? undefined : "Filter"}
         </Button>
-        <div className=" ml-auto"></div>
+
+        <div className=" flex-grow"></div>
+
         {onDelete && (
           <Button
             className=" flex-shrink-0 ml-auto"
