@@ -6,7 +6,7 @@ import {
   CreateParams,
   DeleteParams,
   UpdateParams,
-} from "../../package/src/index";
+} from "next-fast-table";
 
 function isDate(obj: any) {
   return obj instanceof Date && !isNaN(obj as any);

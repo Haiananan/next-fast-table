@@ -321,15 +321,40 @@ npm run dev
 
 ## FAQ
 
-### 只能使用Server Action吗？
+### 只能使用 Server Action 吗？
+
 不是的。你可以使用任何方式（axios,fetch...）获取数据，只要保证以规定结构返回即可。如果请求失败，需要抛出一个错误。
 
-### 为什么选择NextUI
-NextUI是一个优秀的UI库，提供了丰富的组件和主题，可以快速搭建页面。本项目重点关注全栈开发者的使用体验，并且提供了十分优秀的触摸反馈，适合移动端使用。
+### 为什么选择 NextUI
 
-### 只能在Nextjs中使用吗？
+NextUI 是一个优秀的 UI 库，提供了丰富的组件和主题，可以快速搭建页面。本项目重点关注全栈开发者的使用体验，并且提供了十分优秀的触摸反馈，适合移动端使用。
+
+### 只能在 Nextjs 中使用吗？
+
 不是的。NEXT-FAST-TABLE 是一个独立的组件，可以在任何 React 项目中使用。但是，由于它使用了 Server Action，所以在其他框架中使用时，需要自行实现数据获取。
 
 ## 贡献和支持
 
-欢迎贡献代码和提交问题。您可以在 [GitHub 仓库](https://github.com/your-repo/next-fast-table) 提交 Pull Request 或 Issue。
+欢迎贡献代码和提交问题。您可以在 [GitHub 仓库](https://github.com/Haiananan/next-fast-table) 提交 Pull Request 或 Issue。
+
+本地运行项目：
+
+```bash
+git clone https://github.com/Haiananan/next-fast-table.git
+pnpm install
+cd package
+pnpm install
+cd ..
+pnpm dev
+```
+
+打包：
+
+```bash
+cd package
+pnpm build
+```
+
+## License
+
+本项目使用 MIT 许可证。请查看 [LICENSE](./LICENSE) 文件获取更多信息。
