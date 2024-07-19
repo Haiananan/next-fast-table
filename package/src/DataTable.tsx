@@ -1,51 +1,52 @@
 "use client";
-import React from "react";
-import {
-  getCoreRowModel,
-  useReactTable,
-  getPaginationRowModel,
-  SortingState,
-  getSortedRowModel,
-  getFilteredRowModel,
+import React, { useEffect, useMemo, useState } from "react";
+import type {
   ColumnFiltersState,
-  VisibilityState,
-  RowSelectionState,
-  PaginationState,
   ColumnOrderState,
   ColumnPinningState,
+  PaginationState,
+  RowSelectionState,
+  SortingState,
+  VisibilityState,
 } from "@tanstack/react-table";
-import { useQuery, useMutation } from "@tanstack/react-query";
 import {
-  Spinner,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import {
   Button,
-  Pagination,
+  DatePicker,
   Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
   DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Input,
   Modal,
-  ModalContent,
-  useDisclosure,
-  ModalHeader,
   ModalBody,
+  ModalContent,
   ModalFooter,
-  DatePicker,
+  ModalHeader,
+  Pagination,
   Select,
   SelectItem,
   Textarea,
+  useDisclosure,
 } from "@nextui-org/react";
-import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { Icon } from "@iconify/react";
-import { typedIcon } from "./helper";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { useMedia } from "react-use";
 import { Controller, useForm } from "react-hook-form";
 import { parseAbsoluteToLocal } from "@internationalized/date";
+import { typedIcon } from "./helper";
 import { MyTableBody } from "./TableBody";
+
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
@@ -53,15 +54,15 @@ type DataWithID<T = Record<string, any>> = {
   id: number | string;
 } & Partial<T>;
 
-type DataOnlyId<T = number | string> = {
+interface DataOnlyId<T = number | string> {
   id: T;
-};
+}
 
-export type FetchParams = {
+export interface FetchParams {
   pagination: PaginationState;
   columnFilters: ColumnFiltersState;
   sorting: SortingState;
-};
+}
 
 export type DeleteParams<T> = DataOnlyId<T> | DataOnlyId<T>[];
 
@@ -451,8 +452,9 @@ export function DataTable({
                             if (
                               typeof value === "string" &&
                               value?.trim() === ""
-                            )
+                            ) {
                               return undefined;
+                            }
                             if (type === "number") return Number(value);
                             if (type === "string" || type === "longtext")
                               return String(value);
@@ -657,7 +659,7 @@ export function DataTable({
         <Dropdown backdrop="blur">
           <DropdownTrigger>
             <Button
-              variant={"solid"}
+              variant="solid"
               isIconOnly={isMobile}
               color="primary"
               size={isMobile ? "lg" : undefined}
@@ -775,7 +777,8 @@ export function DataTable({
         <Dropdown backdrop="blur">
           <DropdownTrigger>
             <Button variant="flat" className="">
-              {table.getState().pagination.pageSize} of {total}
+              {table.getState().pagination.pageSize} of
+              {total}
             </Button>
           </DropdownTrigger>
           <DropdownMenu

@@ -5,7 +5,7 @@ import {
   FetchParams,
   CreateParams,
   DeleteParams,
-} from "./data-table";
+} from "./DataTable";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import React from "react";
 import "./tailwind.css";
