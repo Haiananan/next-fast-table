@@ -1,8 +1,9 @@
 import { Icon } from "@iconify/react";
 import React from "react";
-import { Button, Tooltip } from "@nextui-org/react";
+import { Button, Chip, Spacer, Tooltip } from "@nextui-org/react";
 import JSONPretty from "react-json-pretty";
 import "react-json-pretty/themes/monikai.css";
+import { UAParser } from "ua-parser-js";
 
 export function parseDateRange(obj: any) {
   try {
@@ -102,7 +103,88 @@ function typedCell(type: string, cell: any) {
     );
   }
 
-  return <div className=" max-w-xl text-wrap">{cell}</div>;
+  if (type === "enum") {
+    const specialStates = {
+      success: [
+        "succeeded",
+        "successed",
+        "done",
+        "completed",
+        "finish",
+        "finished",
+        "success",
+        "pass",
+        "passed",
+        "approve",
+        "approved",
+        "accept",
+        "accepted",
+      ],
+      warning: [
+        "waiting",
+        "warning",
+        "warn",
+        "pending",
+        "hold",
+        "holded",
+        "holdup",
+        "holduped",
+        "delay",
+        "delayed",
+        "process",
+        "processing",
+      ],
+      danger: [
+        "fail",
+        "failed",
+        "failure",
+        "canceled",
+        "cancelled",
+        "reject",
+        "rejected",
+        "deny",
+        "denied",
+        "refuse",
+        "refused",
+        "block",
+        "blocked",
+        "stop",
+        "stopped",
+        "halt",
+        "halted",
+        "pause",
+        "paused",
+        "suspend",
+        "suspended",
+        "inactive",
+        "invalid",
+        "illegal",
+        "unauthorized",
+        "forbidden",
+        "notallowed",
+      ],
+    };
+
+    let color = "default";
+    for (const state in specialStates) {
+      if (specialStates[state].includes(cell)) {
+        color = state;
+        break;
+      }
+    }
+
+    return (
+      <Chip variant="flat" color={color as any}>
+        {cell}
+      </Chip>
+    );
+  }
+
+  return (
+    <div className=" max-w-xl text-wrap line-clamp-3 overflow-hidden">
+      {cell}
+    </div>
+  );
 }
 
 /**
@@ -160,14 +242,14 @@ interface HelperConfig {
   render?: ({ cell, row }: { cell: any; row: any }) => JSX.Element | string;
 }
 
-function helper(metaType: string) {
+function helper(metaType: string, hconfig = {}) {
   /**
    * @param key - Column identifier used to access data
    * @example key: "id" "amount" "profile.name" "a.b.c.d.e"
    * @param config - Configuration options
    * @example config: { label: "UID", input: { required: true }, render: ({ cell, row }) => <div>{cell}</div> }
    */
-  return (key: string, config: HelperConfig = {}) => {
+  return (key: string, config: HelperConfig = hconfig) => {
     return {
       meta: {
         type: metaType,
@@ -193,6 +275,7 @@ function helper(metaType: string) {
     };
   };
 }
+const uaParser = new UAParser();
 
 export const Fields = {
   string: helper("string"),
@@ -203,18 +286,89 @@ export const Fields = {
   json: helper("json"),
   longtext: helper("longtext"),
   enum: helper("enum"),
+  ua: helper("string", {
+    render: ({ cell }) => {
+      const parser = new UAParser();
+      parser.setUA(cell);
+      const result = parser.getResult();
+
+      const browserIcon =
+        {
+          Chrome: "teenyicons:chrome-solid",
+          Firefox: "ri:firefox-fill",
+          Safari: "fa6-brands:safari",
+          "Mobile Safari": "fa6-brands:safari",
+          Edge: "mdi:microsoft-edge",
+          Opera: "mdi:opera",
+          "Internet Explorer": "mdi:internet-explorer",
+        }[result.browser.name as any] || "mdi:web";
+
+      const osIcon =
+        {
+          Windows: "mdi:microsoft-windows",
+          "Mac OS": "mdi:apple",
+          iOS: "mdi:apple-ios",
+          Android: "mdi:android",
+          Linux: "mdi:linux",
+          Ubuntu: "cib:ubuntu",
+        }[result.os.name as any] || "mingcute:device-fill";
+
+      return (
+        <div className="flex ">
+          <Chip
+            startContent={<Icon icon={osIcon}></Icon>}
+            color="primary"
+            variant="flat"
+          >
+            {result.os.name} {result.os.version ? result.os.version : ""}
+          </Chip>
+          <Spacer x={1}></Spacer>
+          <Chip
+            startContent={<Icon icon={browserIcon}></Icon>}
+            color="secondary"
+            variant="flat"
+          >
+            {result.browser.name}{" "}
+            {result.browser.version ? result.browser.version : ""}
+          </Chip>
+        </div>
+      );
+    },
+  }),
+  image: helper("string", {
+    render: ({ cell }) => (
+      <div className="flex justify-center">
+        <img src={cell} alt="image" className="max-w-xs rounded" />
+      </div>
+    ),
+  }),
+  email: helper("string", {
+    render: ({ cell }) => (
+      <a href={`mailto:${cell}`} className="text-blue-600 hover:underline">
+        {cell}
+      </a>
+    ),
+  }),
+  tag: helper("string", {
+    render: ({ cell }) => (
+      <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600">
+        {cell}
+      </span>
+    ),
+  }),
+  link: helper("string", {
+    render: ({ cell }) => (
+      <a
+        href={cell}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 hover:underline line-clamp-3 max-w-md overflow-hidden"
+      >
+        <div className=" max-w-xs overflow-hidden text-ellipsis text-xs">{cell}</div>
+      </a>
+    ),
+  }),
+  ip: helper("string", {
+    render: ({ cell }) => <Chip variant="bordered">{cell}</Chip>,
+  }),
 };
-// const paymentHelper = createHelper<Payment>();
-// export const columns = [
-//   paymentHelper.string("id", {
-//     label: "IIDD",
-//     edit: {
-//       required: true,
-//       disabled: true,
-//       hidden: false,
-//     },
-//     render({ cell, row }) {
-//       return <div>{cell}</div>;
-//     },
-//   }),
-// ];

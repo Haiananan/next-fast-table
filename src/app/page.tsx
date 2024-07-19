@@ -1,5 +1,5 @@
 "use client";
-import { NextFastTable, Fields } from "../../package/dist/index";
+import { NextFastTable, Fields } from "../../package/src/index";
 import { onCreate, onDelete, onFetch, onUpdate } from "@/actions/payment";
 import { Chip } from "@nextui-org/react";
 
@@ -11,11 +11,11 @@ export default function DemoPage() {
     field.number("amount"),
     field.enum("currency", { enum: ["USD", "EUR", "JPY"] }),
     field.enum("status"),
-    field.string("email"),
+    field.email("email"),
     field.boolean("isChecked"),
-    field.string("ip"),
-    field.string("device"),
-    field.string("referer"),
+    field.ip("ip"),
+    field.ua("device"),
+    field.link("referer"),
   ];
 
   return (
