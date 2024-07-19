@@ -59,7 +59,13 @@ export async function onFetch(obj: FetchParams) {
   });
 
   return {
-    list: payments,
+    list: payments.map((payment) => {
+      return {
+        ...payment,
+        // to fix Warning: Only plain objects can be passed to Client Components from Server Components. Decimal objects are not supported.
+        amount: +payment.amount!.toString(),
+      };
+    }),
     total,
   };
 }
