@@ -307,7 +307,7 @@ export const Fields = {
         {
           Windows: "mdi:microsoft-windows",
           "Mac OS": "mdi:apple",
-          iOS: "mdi:apple-ios",
+          iOS: "mdi:apple",
           Android: "mdi:android",
           Linux: "mdi:linux",
           Ubuntu: "cib:ubuntu",
@@ -337,8 +337,8 @@ export const Fields = {
   }),
   image: helper("string", {
     render: ({ cell }) => (
-      <div className="flex justify-center">
-        <img src={cell} alt="image" className="max-w-xs rounded" />
+      <div className="flex justify-center  max-w-[50px] aspect-square rounded-xl overflow-hidden ">
+        <img src={cell} alt="image" className=" bg-red-200" />
       </div>
     ),
   }),
@@ -364,7 +364,9 @@ export const Fields = {
         rel="noopener noreferrer"
         className="text-blue-600 hover:underline line-clamp-3 max-w-md overflow-hidden"
       >
-        <div className=" max-w-xs overflow-hidden text-ellipsis text-xs">{cell}</div>
+        <div className=" max-w-xs overflow-hidden text-ellipsis text-xs">
+          {cell}
+        </div>
       </a>
     ),
   }),
