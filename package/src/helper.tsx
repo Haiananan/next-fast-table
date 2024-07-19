@@ -1,4 +1,3 @@
-
 import { Icon } from "@iconify/react";
 import React from "react";
 import { Button, Tooltip } from "@nextui-org/react";
@@ -39,10 +38,10 @@ export function parseDateRange(obj: any) {
     };
   }
 }
-export const typedIcon = (type: string) => {
+export function typedIcon(type: string) {
   const iconType = iconMap[type] || "default-icon";
   return <Icon icon={iconType} />;
-};
+}
 const iconMap = {
   string: "material-symbols:text-fields-rounded",
   number: "f7:number",
@@ -54,10 +53,13 @@ const iconMap = {
   enum: "material-symbols:label",
 };
 
-const typedCell = (type: string, cell: any) => {
+function typedCell(type: string, cell: any) {
+  if (type === "number") {
+    return cell ? <span>{+cell.toString()}</span> : <span>N/A</span>;
+  }
   if (type === "date") {
     return cell ? (
-      <span>{new Date(cell).toLocaleDateString()}</span>
+      <span className="">{new Date(cell).toLocaleDateString()}</span>
     ) : (
       <span>N/A</span>
     );
@@ -100,8 +102,8 @@ const typedCell = (type: string, cell: any) => {
     );
   }
 
-  return cell;
-};
+  return <div className=" max-w-xl text-wrap">{cell}</div>;
+}
 
 /**
  * Configuration options for helper functions.

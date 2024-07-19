@@ -9,4 +9,9 @@ export default defineConfig({
   clean: true,
   outDir: "dist",
   injectStyle: true,
+  esbuildOptions(options) {
+    options.banner = {
+      js: '"use client"',
+    }
+  },
 });

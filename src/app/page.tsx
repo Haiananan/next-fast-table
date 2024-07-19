@@ -7,12 +7,15 @@ export default function DemoPage() {
   const field = Fields;
 
   const columns = [
-    field.number("id", {
-      label: "UID",
-      render({ cell, row }) {
-        return <div>{cell}</div>;
-      },
-    }),
+    field.number("id"),
+    field.number("amount"),
+    field.enum("currency", { enum: ["USD", "EUR", "JPY"] }),
+    field.enum("status"),
+    field.string("email"),
+    field.boolean("isChecked"),
+    field.string("ip"),
+    field.string("device"),
+    field.string("referer"),
   ];
 
   return (
