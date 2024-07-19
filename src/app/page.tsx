@@ -8,14 +8,20 @@ export default function DemoPage() {
 
   const columns = [
     field.number("id"),
+    field.image("avatar"),
+    field.string("username"),
     field.number("amount"),
     field.enum("currency", { enum: ["USD", "EUR", "JPY"] }),
-    field.enum("status"),
     field.email("email"),
+    field.enum("status", { enum: ["pending", "success", "fail"] }),
     field.boolean("isChecked"),
     field.ip("ip"),
-    field.ua("device"),
+    field.ua("ua"),
+    field.date("createdAt"),
+    field.date("updatedAt"),
     field.link("referer"),
+    field.array("tags"),
+    field.json("extra"),
   ];
 
   return (

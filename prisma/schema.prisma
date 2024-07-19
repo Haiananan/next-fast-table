@@ -7,21 +7,24 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:./dev.db"
+  url      = "file:./data.db"
 }
 
 model Payment {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  amount    Decimal?
+  amount    Int?
+  username  String?
+  avatar    String?
   currency  String   @default("USD")
   status    String   @default("pending")
   email     String?
+  phone     String?
   isChecked Boolean  @default(false)
-  os        String?
-  browser   String?
   ip        String?
-  device    String?
+  ua        String?
   referer   String?
+  tags      String?
+  extra     String?
 }
