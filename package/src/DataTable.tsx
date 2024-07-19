@@ -720,7 +720,7 @@ export function DataTable({
         <div className=" ml-auto"></div>
         {onDelete && (
           <Button
-            className=" flex-shrink-0"
+            className=" flex-shrink-0 ml-auto"
             color="danger"
             size={isMobile ? "lg" : undefined}
             isIconOnly={isMobile}
