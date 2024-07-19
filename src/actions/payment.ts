@@ -1,16 +1,13 @@
 "use server";
 import { Payment } from "@prisma/client";
 import prisma from "@/lib/db";
+import { DataOnlyId, DataWithID, FetchParams } from "../../package/dist";
+
 function isDate(obj: any) {
   return obj instanceof Date && !isNaN(obj as any);
 }
-export async function get(obj: {
-  pagination?: { pageSize: number; pageIndex: number };
-  sorting?: { desc: boolean; id: string }[];
-  columnFilters?: { id: string; value: any }[];
-}) {
-  console.log(obj);
 
+export async function onFetch(obj: FetchParams) {
   const pageSize = obj.pagination?.pageSize ?? 10;
   const pageIndex = obj.pagination?.pageIndex ?? 0;
 
@@ -21,14 +18,7 @@ export async function get(obj: {
 
   const filters =
     obj.columnFilters?.map((filter) => {
-      if (isDate(filter.value?.gte) && isDate(filter.value?.lte)) {
-        return {
-          [filter.id]: {
-            gte: filter.value.gte,
-            lte: filter.value.lte,
-          },
-        };
-      } else if (
+      if (
         typeof filter.value === "number" ||
         typeof filter.value === "boolean"
       ) {
@@ -53,7 +43,6 @@ export async function get(obj: {
       AND: filters as any,
     },
   });
-  const pageCount = Math.ceil(total / pageSize);
 
   const payments = await prisma.payment.findMany({
     take: pageSize,
@@ -66,18 +55,19 @@ export async function get(obj: {
 
   return {
     list: payments,
-    pageCount,
     total,
   };
 }
-export async function addData(paymentData: any) {
+export async function onCreate(data: DataWithID<Payment>) {
   const newPayment = await prisma.payment.create({
-    data: paymentData,
+    data: data,
   });
   return newPayment;
 }
 
-export async function deleteData(data: Payment | Payment[]) {
+export async function onDelete(
+  data: DataOnlyId<number> | DataOnlyId<number>[]
+) {
   const deletePayments = await prisma.payment.deleteMany({
     where: {
       id: {
@@ -85,15 +75,15 @@ export async function deleteData(data: Payment | Payment[]) {
       },
     },
   });
-  return deletePayments;
+  // return deletePayments;
 }
 
-export async function updateData(paymentData: Partial<Payment>) {
+export async function onUpdate(data: DataWithID<Payment>) {
   const updatedPayment = await prisma.payment.update({
     where: {
-      id: paymentData.id,
+      id: data.id,
     },
-    data: paymentData,
+    data: data,
   });
   return updatedPayment;
 }

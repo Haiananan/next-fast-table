@@ -49,14 +49,26 @@ import { MyTableBody } from "./TableBody";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-type DataWithID = {
+type DataWithID<T = Record<string, any>> = {
   id: number | string;
-  [key: string]: any;
+} & Partial<T>;
+
+type DataOnlyId<T = number | string> = {
+  id: T;
 };
 
-type DataOnlyId = {
-  id: number | string;
+export type FetchParams = {
+  pagination: PaginationState;
+  columnFilters: ColumnFiltersState;
+  sorting: SortingState;
 };
+
+export type DeleteParams<T = string | number> = DataOnlyId<T> | DataOnlyId<T>[];
+
+export type UpdateParams<T = Record<string, any>> = DataWithID<T>;
+
+export type CreateParams = UpdateParams;
+
 /**
  * Table configuration options.
  */
@@ -89,11 +101,9 @@ export interface TableConfig {
    *   };
    * }
    */
-  onFetch: (args: {
-    pagination: PaginationState;
-    columnFilters: ColumnFiltersState;
-    sorting: SortingState;
-  }) => Promise<{ total: number; list: DataWithID[] }>;
+  onFetch: (
+    args: FetchParams
+  ) => Promise<{ total: number; list: DataWithID[] }>;
 
   /**
    * Function to delete data.
@@ -104,7 +114,7 @@ export interface TableConfig {
    *   await deleteDataFromAPI(data);
    * }
    */
-  onDelete?: (data: DataOnlyId | DataOnlyId[]) => Promise<void>;
+  onDelete?: (data: DeleteParams) => Promise<void>;
 
   /**
    * Function to create new data.
@@ -116,7 +126,7 @@ export interface TableConfig {
    *   return newData;
    * }
    */
-  onCreate?: (data: DataWithID) => Promise<void>;
+  onCreate?: (data: CreateParams) => Promise<void>;
 
   /**
    * Function to update existing data.
@@ -128,7 +138,7 @@ export interface TableConfig {
    *   return updatedData;
    * }
    */
-  onUpdate?: (data: DataWithID) => Promise<void>;
+  onUpdate?: (data: UpdateParams) => Promise<void>;
 }
 export function DataTable({
   name = "next-table",

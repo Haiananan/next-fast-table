@@ -1,15 +1,30 @@
-export { Fields } from "./helper.js";
-import { DataTable, TableConfig } from "./data-table.js";
+import {
+  DataTable,
+  TableConfig,
+  UpdateParams,
+  FetchParams,
+  CreateParams,
+  DeleteParams,
+} from "./data-table";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import React from "react";
 import "./tailwind.css";
+import { Fields } from "./helper";
 
 const queryClient = new QueryClient();
 
-export function NextFastTable(props: TableConfig) {
+function NextFastTable(props: TableConfig) {
   return (
     <QueryClientProvider client={queryClient}>
       <DataTable {...props} />
     </QueryClientProvider>
   );
 }
+export {
+  NextFastTable,
+  Fields,
+  FetchParams,
+  CreateParams,
+  UpdateParams,
+  DeleteParams,
+};

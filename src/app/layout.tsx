@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Layout({ children }) {
   return (
-    <html className=" dark">
+    <html className="">
       <body>{children}</body>
     </html>
   );
