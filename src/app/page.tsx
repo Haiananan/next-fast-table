@@ -1,7 +1,6 @@
 "use client";
 import { NextFastTable, Fields } from "../../package/src/index";
 import { onCreate, onDelete, onFetch, onUpdate } from "@/actions/payment";
-import { Chip } from "@nextui-org/react";
 
 export default function DemoPage() {
   const field = Fields;
