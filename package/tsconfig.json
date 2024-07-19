@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2015", // 目标 JavaScript 版本
+    "module": "ESNext", // 使用 ESNext 模块系统
+    "declaration": true, // 生成 .d.ts 文件
+    "outDir": "./dist", // 输出目录
+    "strict": true, // 启用所有严格类型检查选项
+    "esModuleInterop": true, // 启用 ES 模块交互
+    "skipLibCheck": true, // 跳过库文件检查
+    "forceConsistentCasingInFileNames": true, // 强制文件名一致
+    "jsx": "react",
+    "moduleResolution": "node", // 使用 node 模块解析
+    "noImplicitAny": false
+  },
+  "include": ["src"], // 包含的文件
+  "exclude": ["node_modules", "dist"] // 排除的文件
+}

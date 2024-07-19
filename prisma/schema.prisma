@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Payment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  amount    Decimal?
+  currency  String   @default("USD")
+  status    String   @default("pending")
+  email     String?
+  isChecked Boolean  @default(false)
+  os        String?
+  browser   String?
+  ip        String?
+  device    String?
+  referer   String?
+}
