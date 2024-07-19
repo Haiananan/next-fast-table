@@ -63,7 +63,7 @@ export type FetchParams = {
   sorting: SortingState;
 };
 
-export type DeleteParams<T = string | number> = DataOnlyId<T> | DataOnlyId<T>[];
+export type DeleteParams<T> = DataOnlyId<T> | DataOnlyId<T>[];
 
 export type UpdateParams<T = Record<string, any>> = DataWithID<T>;
 
@@ -114,7 +114,7 @@ export interface TableConfig {
    *   await deleteDataFromAPI(data);
    * }
    */
-  onDelete?: (data: DeleteParams) => Promise<void>;
+  onDelete?: (data: any) => Promise<void>;
 
   /**
    * Function to create new data.
@@ -126,7 +126,7 @@ export interface TableConfig {
    *   return newData;
    * }
    */
-  onCreate?: (data: CreateParams) => Promise<void>;
+  onCreate?: (data: any) => Promise<void>;
 
   /**
    * Function to update existing data.
@@ -138,7 +138,7 @@ export interface TableConfig {
    *   return updatedData;
    * }
    */
-  onUpdate?: (data: UpdateParams) => Promise<void>;
+  onUpdate?: (data: any) => Promise<void>;
 }
 export function DataTable({
   name = "next-table",
@@ -351,7 +351,7 @@ export function DataTable({
       id: row.original.id,
     }));
     table.resetRowSelection();
-    deleteMutation.mutate(items);
+    deleteMutation.mutate(items as any);
   };
 
   const onTableSelectionChange = (value) => {

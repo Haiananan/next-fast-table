@@ -63,11 +63,11 @@ export async function onFetch(obj: FetchParams) {
     total,
   };
 }
+
 export async function onCreate(data: CreateParams<Payment>) {
-  const newPayment = await prisma.payment.create({
+  await prisma.payment.create({
     data: data,
   });
-  return newPayment;
 }
 
 export async function onDelete(data: DeleteParams<number>) {
@@ -81,11 +81,10 @@ export async function onDelete(data: DeleteParams<number>) {
 }
 
 export async function onUpdate(data: UpdateParams<Payment>) {
-  const updatedPayment = await prisma.payment.update({
+  await prisma.payment.update({
     where: {
       id: data.id,
     },
     data: data,
   });
-  return updatedPayment;
 }
