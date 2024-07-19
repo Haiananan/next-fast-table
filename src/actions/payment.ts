@@ -1,7 +1,12 @@
 "use server";
 import { Payment } from "@prisma/client";
 import prisma from "@/lib/db";
-import { DataOnlyId, DataWithID, FetchParams } from "../../package/dist";
+import {
+  FetchParams,
+  CreateParams,
+  DeleteParams,
+  UpdateParams,
+} from "../../package/dist";
 
 function isDate(obj: any) {
   return obj instanceof Date && !isNaN(obj as any);
@@ -58,27 +63,24 @@ export async function onFetch(obj: FetchParams) {
     total,
   };
 }
-export async function onCreate(data: DataWithID<Payment>) {
+export async function onCreate(data: CreateParams<Payment>) {
   const newPayment = await prisma.payment.create({
     data: data,
   });
   return newPayment;
 }
 
-export async function onDelete(
-  data: DataOnlyId<number> | DataOnlyId<number>[]
-) {
-  const deletePayments = await prisma.payment.deleteMany({
+export async function onDelete(data: DeleteParams<number>) {
+  await prisma.payment.deleteMany({
     where: {
       id: {
         in: [data].flat().map((d) => d.id),
       },
     },
   });
-  // return deletePayments;
 }
 
-export async function onUpdate(data: DataWithID<Payment>) {
+export async function onUpdate(data: UpdateParams<Payment>) {
   const updatedPayment = await prisma.payment.update({
     where: {
       id: data.id,

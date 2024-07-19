@@ -67,7 +67,7 @@ export type DeleteParams<T = string | number> = DataOnlyId<T> | DataOnlyId<T>[];
 
 export type UpdateParams<T = Record<string, any>> = DataWithID<T>;
 
-export type CreateParams = UpdateParams;
+export type CreateParams<T = Record<string, any>> = DataWithID<T>;
 
 /**
  * Table configuration options.
