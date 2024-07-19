@@ -18,7 +18,9 @@
    - [TableConfig](#tableconfig)
 7. [类型](#类型)
 8. [完整案例](#完整案例)
-9. [贡献和支持](#贡献和支持)
+9. [FAQ](#FAQ)
+10. [贡献和支持](#贡献和支持)
+11. [License](#license)
 
 ## 介绍
 
@@ -166,7 +168,7 @@ export async function onUpdate(data: UpdateParams<Payment>) {
 ```typescript
 "use client";
 import { NextFastTable, Fields } from "next-fast-table";
-import { onCreate, onDelete, onFetch, onUpdate } from "@/actions/payment";
+import { onCreate, onDelete, onFetch, onUpdate } from "YourAPIFile";
 
 export default function DemoPage() {
   const field = Fields;
@@ -232,7 +234,11 @@ export default function DemoPage() {
   - **示例**:
     ```javascript
     async function fetchData({ pagination, sorting, columnFilters }) {
-      const data = await fetchDataFromAPI({ pagination, sorting, columnFilters });
+      const data = await fetchDataFromAPI({
+        pagination,
+        sorting,
+        columnFilters,
+      });
       const total = await fetchTotalCount();
       return {
         list: data,
@@ -312,6 +318,17 @@ git clone https://github.com/Haiananan/next-fast-table.git
 npm install
 npm run dev
 ```
+
+## FAQ
+
+### 只能使用Server Action吗？
+不是的。你可以使用任何方式（axios,fetch...）获取数据，只要保证以规定结构返回即可。如果请求失败，需要抛出一个错误。
+
+### 为什么选择NextUI
+NextUI是一个优秀的UI库，提供了丰富的组件和主题，可以快速搭建页面。本项目重点关注全栈开发者的使用体验，并且提供了十分优秀的触摸反馈，适合移动端使用。
+
+### 只能在Nextjs中使用吗？
+不是的。NEXT-FAST-TABLE 是一个独立的组件，可以在任何 React 项目中使用。但是，由于它使用了 Server Action，所以在其他框架中使用时，需要自行实现数据获取。
 
 ## 贡献和支持
 

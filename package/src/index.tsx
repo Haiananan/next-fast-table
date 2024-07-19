@@ -23,8 +23,8 @@ function NextFastTable(props: TableConfig) {
 export {
   NextFastTable,
   Fields,
-  FetchParams,
-  CreateParams,
-  UpdateParams,
-  DeleteParams,
+  type FetchParams,
+  type CreateParams,
+  type UpdateParams,
+  type DeleteParams,
 };

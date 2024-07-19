@@ -354,13 +354,13 @@ export function DataTable({
     deleteMutation.mutate(items as any);
   };
 
-  const onTableSelectionChange = (value) => {
-    if (value === "all") return table.toggleAllRowsSelected();
+  // const onTableSelectionChange = (value) => {
+  //   if (value === "all") return table.toggleAllRowsSelected();
 
-    table.setRowSelection(
-      [...value].reduce((acc, cur) => ({ ...acc, [+cur]: true }), {})
-    );
-  };
+  //   table.setRowSelection(
+  //     Array.from(value).reduce((acc, cur) => ({ ...acc, [+cur]: true }), {})
+  //   );
+  // };
 
   const isCreateOrEditMode = mode === "create" || mode === "edit";
 

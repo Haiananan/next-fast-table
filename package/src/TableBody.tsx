@@ -39,7 +39,7 @@ export function MyTableBody({
       onSelectionChange={(value) => {
         if (value === "all") return table.toggleAllRowsSelected();
         table.setRowSelection(
-          [...value].reduce((acc, cur) => ({ ...acc, [+cur]: true }), {})
+          Array.from(value).reduce((acc, cur) => ({ ...acc, [+cur]: true }), {})
         );
       }}
       aria-label="data-table"
