@@ -53,15 +53,15 @@ type DataWithID<T = Record<string, any>> = {
   id: number | string;
 } & Partial<T>;
 
-interface DataOnlyId<T = number | string> {
+type DataOnlyId<T = number | string> = {
   id: T;
-}
+};
 
-export interface FetchParams {
+export type FetchParams = {
   pagination: PaginationState;
   columnFilters: ColumnFiltersState;
   sorting: SortingState;
-}
+};
 
 export type DeleteParams<T> = DataOnlyId<T> | DataOnlyId<T>[];
 
