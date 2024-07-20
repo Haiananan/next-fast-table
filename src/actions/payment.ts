@@ -66,7 +66,7 @@ export async function onFetch(obj: FetchParams) {
 
 export async function onCreate(data: CreateParams<Payment>) {
   await prisma.payment.create({
-    data: data,
+    data: data as any,
   });
 }
 
@@ -85,6 +85,6 @@ export async function onUpdate(data: UpdateParams<Payment>) {
     where: {
       id: data.id,
     },
-    data: data,
+    data: data as any,
   });
 }
