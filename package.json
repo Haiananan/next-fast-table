@@ -13,28 +13,14 @@
 		"seed": "node prisma/seed.js"
 	},
 	"dependencies": {
-		"@internationalized/date": "^3.5.4",
 		"@nextui-org/react": "^2.4.5",
 		"@prisma/client": "^5.17.0",
 		"@react-aria/ssr": "3.9.4",
 		"@react-aria/visually-hidden": "3.8.12",
-		"@tanstack/react-query": "^5.8.4",
-		"@tanstack/react-table": "^8.10.7",
-		"dayjs": "^1.11.10",
-		"intl-messageformat": "^10.5.0",
-		"lodash": "^4.17.21",
 		"next": "14.2.4",
-		"next-fast-table": "*",
-		"next-themes": "^0.2.1",
 		"prisma": "^5.17.0",
 		"react": "18.3.1",
-		"react-dom": "18.3.1",
-		"react-hook-form": "^7.52.1",
-		"react-json-pretty": "^2.2.0",
-		"react-use": "^17.5.0",
-		"sonner": "^1.2.4",
-		"ua-parser-js": "^1.0.38",
-		"zustand": "^4.5.4"
+		"react-dom": "18.3.1"
 	},
 	"devDependencies": {
 		"@iconify/react": "^5.0.1",
