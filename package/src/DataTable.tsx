@@ -543,7 +543,7 @@ export function DataTable({
                           <DatePicker
                             granularity="second"
                             label={column.header}
-                            value={
+                            value={  
                               field.value
                                 ? parseAbsoluteToLocal(
                                     field.value?.toISOString()
