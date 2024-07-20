@@ -506,7 +506,11 @@ export function DataTable({
                           <DatePicker
                             granularity="second"
                             label={column.header}
-                            value={fromDate(field.value, getLocalTimeZone())}
+                            value={
+                              field.value
+                                ? fromDate(field.value, getLocalTimeZone())
+                                : undefined
+                            }
                             onChange={(date) => {
                               field.onChange(date.toDate());
                             }}
