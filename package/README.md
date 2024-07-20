@@ -324,6 +324,9 @@ This project is a minimal Next.js application demonstrating basic usage of NEXT-
 ```bash
 git clone https://github.com/Haiananan/next-fast-table.git
 npm install
+cd package
+npm install
+cd ..
 npm run dev
 ```
 

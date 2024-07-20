@@ -45,6 +45,7 @@ export default function DemoPage() {
     field.json("extra"),
   ];
 
+
   return (
     <div className=" w-full  h-screen">
       <NextFastTable
