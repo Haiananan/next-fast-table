@@ -16,7 +16,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useMutation, useQuery } from "@tanstack/react-query";
-
 import { toast } from "sonner";
 import { Icon } from "@iconify/react";
 import { useMedia } from "react-use";
@@ -31,18 +30,18 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-} from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
-import { Input, Textarea } from "@nextui-org/input";
-import { Select, SelectItem } from "@nextui-org/select";
-import { DatePicker } from "@nextui-org/date-picker";
-import { Pagination } from "@nextui-org/pagination";
-import {
+  Button,
+  Input,
+  Textarea,
+  Select,
+  SelectItem,
+  DatePicker,
+  Pagination,
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
-} from "@nextui-org/dropdown";
+} from "@nextui-org/react";
 
 type DataWithID<T = Record<string, any>> = {
   id: number | string;
