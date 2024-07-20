@@ -6,7 +6,7 @@ import {
   CreateParams,
   DeleteParams,
   UpdateParams,
-} from "../../package";
+} from "../../package/src/index";
 
 function isDate(obj: any) {
   return obj instanceof Date && !isNaN(obj as any);

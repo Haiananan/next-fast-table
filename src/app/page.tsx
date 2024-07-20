@@ -1,5 +1,5 @@
 "use client";
-import { NextFastTable, Fields } from "../../package";
+import { NextFastTable, Fields } from "../../package/src/index";
 import { onCreate, onDelete, onFetch, onUpdate } from "@/actions/payment";
 const currencyEnum = [
   "USD", // United States Dollar
