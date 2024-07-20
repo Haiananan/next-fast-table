@@ -37,7 +37,9 @@
 
 ## 在线演示
 
-> 目前没有提供在线演示链接，请参考完整案例在本地运行。
+<a href="https://next-fast-table.vercel.app" target="_blank" style="display: inline-block; background-color: #2563eb; color: white; padding: 10px 20px; text-align: center; text-decoration: none; border-radius: 5px; font-size: 12px; font-weight: bold;">
+  DEMO
+</a>
 
 ## 安装
 
