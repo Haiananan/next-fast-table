@@ -4,6 +4,7 @@ import { Button, Chip, Spacer, Tooltip } from "@nextui-org/react";
 import JSONPretty from "react-json-pretty";
 import "react-json-pretty/themes/monikai.css";
 import { UAParser } from "ua-parser-js";
+import { Image } from "@nextui-org/react";
 
 export function parseDateRange(obj: any) {
   try {
@@ -338,7 +339,18 @@ export const Fields = {
   image: helper("string", {
     render: ({ cell }) => (
       <div className="flex justify-center  max-w-[50px] aspect-square rounded-xl overflow-hidden ">
-        <img src={cell} alt="image" className=" bg-red-200" />
+        <Image
+          src={cell}
+          alt="image"
+          width={50}
+          isZoomed
+          height={50}
+          className="rounded-xl"
+          onClick={() => {
+            // open image in new tab
+            window.open(cell, "_blank");
+          }}
+        />
       </div>
     ),
   }),
