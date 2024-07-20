@@ -1,10 +1,14 @@
 import { Icon } from "@iconify/react";
 import React from "react";
-import { Button, Chip, Spacer, Tooltip } from "@nextui-org/react";
 import JSONPretty from "react-json-pretty";
 import "react-json-pretty/themes/monikai.css";
 import { UAParser } from "ua-parser-js";
-import { Image } from "@nextui-org/react";
+import { Image } from "@nextui-org/image";
+import { Chip } from "@nextui-org/chip";
+import { Button } from "@nextui-org/button";
+import { Spacer } from "@nextui-org/spacer";
+import { Tooltip } from "@nextui-org/tooltip";
+import { Link } from "@nextui-org/link";
 
 export function parseDateRange(obj: any) {
   try {
@@ -356,9 +360,9 @@ export const Fields = {
   }),
   email: helper("string", {
     render: ({ cell }) => (
-      <a href={`mailto:${cell}`} className="text-blue-600 hover:underline">
+      <Link showAnchorIcon href={`mailto:${cell}`}>
         {cell}
-      </a>
+      </Link>
     ),
   }),
   tag: helper("string", {
@@ -370,16 +374,13 @@ export const Fields = {
   }),
   link: helper("string", {
     render: ({ cell }) => (
-      <a
+      <Link
+        showAnchorIcon
+        className=" max-w-sm overflow-hidden text-ellipsis line-clamp-2"
         href={cell}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-600 hover:underline line-clamp-3 max-w-md overflow-hidden"
       >
-        <div className=" max-w-xs overflow-hidden text-ellipsis text-xs">
-          {cell}
-        </div>
-      </a>
+        {cell}
+      </Link>
     ),
   }),
   ip: helper("string", {
