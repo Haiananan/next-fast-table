@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./data.db"
+  provider = "postgres"
+  url      = env("DATABASE_URL")
 }
 
 model Payment {
@@ -25,6 +25,6 @@ model Payment {
   ip        String?
   ua        String?
   referer   String?
-  tags      String?
-  extra     String?
+  tags      String[] @default([])
+  extra     Json?
 }

@@ -59,13 +59,7 @@ export async function onFetch(obj: FetchParams) {
   });
 
   return {
-    list: payments.map((item) => {
-      return {
-        ...item,
-        tags: JSON.parse(item.tags!),
-        extra: JSON.parse(item.extra!),
-      };
-    }),
+    list: payments,
     total,
   };
 }

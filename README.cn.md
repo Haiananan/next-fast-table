@@ -319,14 +319,19 @@ export type CreateParams<T = Record<string, any>> = DataWithID<T>;
 
 ## 完整案例
 
-本项目是一个最小化的 Next.js 应用，用于演示 NEXT-FAST-TABLE 的基本用法。您可以通过以下步骤在本地运行该项目。该项目使用 sqlite 数据库，数据存储在 `prisma/data.db` 文件中。
+本项目是一个最小化的 Next.js 应用，用于演示 NEXT-FAST-TABLE 的基本用法。您可以通过以下步骤在本地运行该项目。该项目使用 postgres 数据库
 
 ```bash
 git clone https://github.com/Haiananan/next-fast-table.git
+
 npm install
 cd package
 npm install
 cd ..
+
+npx prisma db push
+npx prisma db seed
+npx prisma generate
 npm run dev
 ```
 
