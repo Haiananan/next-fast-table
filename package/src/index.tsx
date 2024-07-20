@@ -10,12 +10,14 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import React from "react";
 import "./tailwind.css";
 import { Fields } from "./helper";
+import { Toaster } from "sonner";
 
 const queryClient = new QueryClient();
 
 function NextFastTable(props: TableConfig) {
   return (
     <QueryClientProvider client={queryClient}>
+      <Toaster richColors position="top-center" />
       <DataTable {...props} />
     </QueryClientProvider>
   );
