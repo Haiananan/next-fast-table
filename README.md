@@ -1,6 +1,6 @@
 # NEXT-FAST-TABLE
 
-🦄 Create Your Table Program in One Minute
+🦄 **NEXT-FAST-TABLE** is an atomic, out-of-the-box frontend form component for backend management applications, based on Next.js.
 
 ![Image](./public/image.png)
 
@@ -24,13 +24,15 @@
    - [TableConfig](#tableconfig)
 7. [Types](#types)
 8. [Complete Example](#complete-example)
-9. [FAQ](#faq)
+9. [WHY NEXT-FAST-TABLE](#why-next-fast-table)
 10. [Contribution and Support](#contribution-and-support)
 11. [License](#license)
 
 ## Introduction
 
-**NEXT-FAST-TABLE** is a powerful and efficient table component designed for developers using Next.js. It simplifies the process of displaying complex data, allowing you to quickly create and integrate tables into your applications in just one minute.
+**NEXT-FAST-TABLE** is a powerful and efficient table component designed for developers using Next.js. It simplifies the process of displaying complex data, allowing you to quickly create and integrate tables into your application within minutes.
+
+As an independent developer, you can rapidly create a functional backend management framework similar to calling a library. It includes common CRUD operations and typical requirements like filtering and exporting. With NEXT-FAST-TABLE, you can focus more on core business logic rather than backend management. This tool enables independent developers, especially those using Next.js, to develop and deploy a functional backend management MVP in minutes rather than hours.
 
 ## Features
 
@@ -335,27 +337,51 @@ npx prisma generate
 npm run dev
 ```
 
-## FAQ
+## WHY NEXT-FAST-TABLE
 
-### Is this a backend admin template?
+### Who Should Use It
 
-No. NEXT-FAST-TABLE is a table component designed for data presentation. It does not include any backend admin template. It aims to assist developers in quickly building table pages rather than a complete backend admin system.
+1. Individual developers who want to set up a functional data panel within minutes.
+2. Individual developers or teams building demos or various MVP services.
+3. Next.js developers.
 
-### Why choose NEXT-FAST-TABLE?
+### Development Motivation
 
-NEXT-FAST-TABLE is an efficient and easy-to-use table component designed for Next.js developers. It provides rich configuration options and data handling methods, enabling you to quickly create and integrate tables into your applications. Leveraging Server Action by default, you can handle data without explicitly defining APIs.
+In software development, backend application development is a crucial phase, but many developers find it tedious. The primary reason is that backend application development often involves repetitive CRUD operations and some minor special logic, which can feel like a waste of time and energy.
 
-### Can I only use Server Action?
+We can abstract UI requirements into design components, so why not abstract backend requirements into an out-of-the-box library? This not only reduces repetitive labor but also enhances development efficiency, allowing developers to focus on more creative tasks.
 
-No. You can fetch data using any method (axios, fetch, etc.) as long as you return data in the specified structure. If the request fails, an error should be thrown.
+#### Subtraction Is Always Harder Than Addition
 
-### Can it only be used in Next.js?
+Currently, there are many ready-made, complete admin application templates in the market. These applications provide a full stack of technologies, allowing developers to start them with a command and adjust them according to their needs. However, are these systems really easy to use? Faced with a complete and large system, many people feel overwhelmed and need to spend a lot of time learning documentation and reading source code. Many beginners may think it's their own ability issue, but in fact, it's not the developer's own problem.
 
-No. NEXT-FAST-TABLE is a standalone component and can be used in any React project. However, due to its use of Server Action, you'll need to implement data fetching when using it in other frameworks.
+Subtraction is always harder than addition. Most systems on the market are complete applications that require developers to subtract to fit their own needs. However, when the requirements exceed the preset framework, these systems can lead to a lot of technical debt. Technical debt often stems from differences in the design purposes of the system's early and late stages. Ready-made systems cannot fully match the requirements of secondary development, so many developers are unwilling to engage in secondary development, which may eventually lead to refactoring or even starting from scratch.
 
-### Why use NextUI instead of other UI libraries?
+#### Sometimes Less Is More Important Than Good
 
-NextUI is an excellent UI library offering a rich set of components and themes for rapid page development. This project focuses on providing a great user experience for full-stack developers, emphasizing simple and refined operation experiences, which NextUI excels in providing.
+After using NEXT-FAST-TABLE, I can integrate all the basic CRUD operations required by a model within 1 minute (no kidding :D), and I only need to modify the logic slightly, leaving the rest to define columns.
+
+For independent developers, NEXT-FAST-TABLE can save several hours in building basic backend management panels, allowing developers to focus more on developing business logic. Rather than slowly modifying a complete and large admin project, it's better to build what you need from scratch! This is a simple, pure, fast backend management tool component designed with empathy for independent developers (rather than using various database tools to manage their own SaaS).
+
+#### Atomic
+
+NEXT-FAST-TABLE is just a tool library for forms, you can integrate it into any existing system and freely expand it. Because the most complicated form CRUD content, it has been set up for you!
+
+### Why Develop Based on Next.js
+
+In other admin panel projects, you not only need to define various column data but also need to define many APIs for network request operations and use fetch or axios. However, with the support of Next.js's Server Actions, you can work without having to integrate APIs, just define a few functions and pass them into client components, and also have TypeScript type hints. When your business data structure changes, you only need to modify column definitions and related functions, which can generally be completed within a minute!
+
+### Can Only Server Actions Be Used?
+
+No. You can use any method (axios, fetch, etc.) to get data, just ensure that it returns in the specified structure. If the request fails, an error needs to be thrown.
+
+### Can It Only Be Used in Next.js?
+
+No. NEXT-FAST-TABLE is a standalone component that can be used in any React project. However, because it uses Server Actions, when used in other frameworks, data retrieval needs to be implemented independently.
+
+### Why Use NextUI Instead of Other UI Libraries?
+
+NextUI is an excellent UI library that provides a rich set of components and themes for quickly building pages. This project focuses on the user experience of full-stack developers and provides excellent touch feedback, suitable for mobile use. We focus on simple and ultimate operational experience, and NextUI is exactly what we need. Many component libraries pursue comprehensiveness but overlook the refinement of details, such as press touch feedback and animation effects. Because NEXT-FAST-TABLE is a simple and fast backend panel tool component, it requires a small and beautiful exquisite UI.
 
 ## Contribution and Support
 
