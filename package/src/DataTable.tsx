@@ -384,7 +384,7 @@ export function DataTable({
   );
 
   return (
-    <div id="container" className="space-y-2 p-2 flex flex-col h-full   ">
+    <div id="container" className="space-y-2 p-2 flex flex-col h-full gap-2">
       {/* <div
         id="debugger"
         className=" w-1/5 p-2 rounded-xl  bg-black/50 pointer-events-none top-20  absolute z-[999999]"
