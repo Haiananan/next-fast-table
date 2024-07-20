@@ -37,17 +37,11 @@ import {
 } from "@nextui-org/react";
 import { toast } from "sonner";
 import { Icon } from "@iconify/react";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
 import { useMedia } from "react-use";
 import { Controller, useForm } from "react-hook-form";
 import { parseAbsoluteToLocal } from "@internationalized/date";
 import { typedIcon } from "./helper";
 import { MyTableBody } from "./TableBody";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
 
 type DataWithID<T = Record<string, any>> = {
   id: number | string;
@@ -276,19 +270,44 @@ export function DataTable({
       setFormData(formData);
     }
   }, []);
+
   const convertToDate = (data) => {
     const { year, month, day, hour, minute, second, millisecond, timeZone } =
       data;
 
-    // 创建一个 Day.js 对象
-    const date = dayjs.tz(
-      `${year}-${month}-${day} ${hour}:${minute}:${second}.${millisecond}`,
-      timeZone
+    // 创建一个格式化的日期字符串
+    const dateString = `${year}-${String(month).padStart(2, "0")}-${String(
+      day
+    ).padStart(2, "0")}T${String(hour).padStart(2, "0")}:${String(
+      minute
+    ).padStart(2, "0")}:${String(second).padStart(2, "0")}.${String(
+      millisecond
+    ).padStart(3, "0")}`;
+
+    // 创建一个带有时区信息的日期对象
+    const date = new Date(dateString);
+
+    // 获取指定时区的偏移量
+    const timeZoneOffset = new Date()
+      .toLocaleString("en-US", { timeZone, timeZoneName: "short" })
+      .split(" ")
+      .pop();
+
+    // 解析时区偏移量
+    const offsetSign = timeZoneOffset?.startsWith("-") ? -1 : 1;
+    const [offsetHour, offsetMinute] = timeZoneOffset!
+      .slice(1)
+      .split(":")
+      .map(Number);
+    const offsetInMinutes = (offsetHour * 60 + offsetMinute) * offsetSign;
+
+    // 将日期对象的时间调整到指定时区
+    date.setMinutes(
+      date.getMinutes() - date.getTimezoneOffset() + offsetInMinutes
     );
 
-    return date.toDate();
+    return date;
   };
-
   const onSubmit = (data: any) => {
     const dirtyData = Object.keys(dirtyFields).reduce((acc, cur) => {
       return { ...acc, [cur]: data[cur] };
