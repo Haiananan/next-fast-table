@@ -1,6 +1,6 @@
 {
   "name": "next-fast-table",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A super-fast form building solution for full-stack developers, build your data forms in one minute.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
