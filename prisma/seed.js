@@ -23,17 +23,26 @@ function randomJSON(length) {
 }
 
 async function main() {
-  for (let i = 0; i < 500; i++) {
-    const data = datas[i];
-    const c = await prisma.payment.create({
-      data: {
-        ...data,
-        tags: randomStringArray(5),
-        extra: randomJSON(5),
-      },
+  // You can change this, a seed action will create 500 payments, starting from id 0,
+  // if you want to add more, just change the START_ID, example 501, 1001, etc
+  const START_ID = 0;
+
+  const paymentData = [];
+  for (let i = START_ID; i < START_ID + 500; i++) {
+    const data = datas[i % 500];
+    paymentData.push({
+      ...data,
+      id: i,
+      tags: randomStringArray(5),
+      extra: randomJSON(5),
     });
-    console.log(c.id);
   }
+
+  const createdPayments = await prisma.payment.createMany({
+    data: paymentData,
+  });
+
+  console.log(`Created ${createdPayments.count} payments`);
 }
 
 main()
