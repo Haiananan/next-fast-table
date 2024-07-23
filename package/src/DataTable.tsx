@@ -744,7 +744,7 @@ export function DataTable({
       >
         <Pagination
           showControls
-          siblings={isMobile ? 0 : 1}
+          siblings={isMobile ? 0 : 3}
           size={isMobile ? "md" : undefined}
           variant="flat"
           total={table.getPageCount()}
@@ -774,7 +774,7 @@ export function DataTable({
             selectionMode="single"
             selectedKeys={[table.getState().pagination.pageSize]}
           >
-            {[5, 10, 20, 50, 100].map((pageSize) => {
+            {[10, 20, 50, 100, 200].map((pageSize) => {
               return (
                 <DropdownItem
                   key={pageSize}
