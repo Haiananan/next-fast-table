@@ -763,8 +763,7 @@ export function DataTable({
         <Dropdown backdrop="blur">
           <DropdownTrigger>
             <Button variant="flat" className="">
-              {table.getState().pagination.pageSize} of
-              {total}
+              {table.getState().pagination.pageSize} of {total}
             </Button>
           </DropdownTrigger>
           <DropdownMenu
