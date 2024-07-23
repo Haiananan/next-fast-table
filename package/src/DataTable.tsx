@@ -608,7 +608,11 @@ export function DataTable({
               form="addDataForm"
               isDisabled={!isDirty && isCreateOrEditMode}
               type="submit"
-              isLoading={updateMutation.isPending || createMutation.isPending}
+              isLoading={
+                updateMutation.isPending ||
+                createMutation.isPending ||
+                deleteMutation.isPending
+              }
               color={mode === "delete" ? "danger" : "primary"}
             >
               <p className="first-letter:uppercase">
@@ -706,6 +710,7 @@ export function DataTable({
             color="danger"
             size={isMobile ? "lg" : undefined}
             isIconOnly={isMobile}
+            isLoading={deleteMutation.isPending}
             variant="solid"
             startContent={<Icon icon="material-symbols:delete" />}
             onClick={onDeleteButtonClick}
